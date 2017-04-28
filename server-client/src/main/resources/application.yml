@@ -1,0 +1,3 @@
+server:
+  contextPath: /server-client
+  port: 8080

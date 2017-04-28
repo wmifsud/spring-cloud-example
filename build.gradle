@@ -1,0 +1,50 @@
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'idea'
+	apply plugin: 'org.springframework.boot'
+
+	group = 'com.cloud'
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		compile('org.springframework.boot:spring-boot-starter-web')
+		compile('org.springframework.boot:spring-boot-starter-logging')
+		compile('org.springframework.boot:spring-boot-starter-actuator')
+		testCompile('org.springframework.boot:spring-boot-starter-test')
+		testCompile group: 'junit', name: 'junit', version: '4.12'
+	}
+}
+
+ext {
+	springCloudVersion = 'Brixton.RELEASE'
+	springBootVersion = '1.5.3.RELEASE'
+}
+
+buildscript {
+	ext {
+		springBootVersion = '1.5.3.RELEASE'
+		dependencyManagementVersion = '0.5.4.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}'")
+	}
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+	}
+}

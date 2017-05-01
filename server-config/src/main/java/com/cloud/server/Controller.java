@@ -1,4 +1,4 @@
-package com.cloud.client;
+package com.cloud.server;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
